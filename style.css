@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+:root {
+  --ink: #17212b;
+  --muted: #687582;
+  --paper: #fffdf8;
+  --panel: rgba(255, 255, 255, 0.78);
+  --line: #e8e1d7;
+  --accent: #e85d3f;
+  --accent-dark: #bd3f27;
+  --shadow: 0 22px 60px rgba(69, 53, 38, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 56px clamp(20px, 6vw, 96px);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(232, 93, 63, 0.15), transparent 25%),
+    radial-gradient(
+      circle at 92% 90%,
+      rgba(246, 190, 76, 0.18),
+      transparent 28%
+    ),
+    #f4efe7;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(rgba(23, 33, 43, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 33, 43, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+h1 {
+  max-width: 1120px;
+  margin: 0 auto 34px;
+  text-align: center;
+  color: var(--ink);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+h1::after {
+  display: block;
+  width: 68px;
+  height: 6px;
+  margin: 18px auto 0;
+  border-radius: 3px;
+  background: var(--accent);
+  content: "";
+}
+
+#your-notes,
+#current-note {
+  min-height: 430px;
+  border: 1px solid rgba(232, 225, 215, 0.9);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+#your-notes {
+  flex: 1 1 58%;
+  padding: 30px;
+  overflow: auto;
+  overflow-wrap: anywhere;
+  background: var(--panel);
+}
+
+#your-notes:empty::before {
+  color: var(--muted);
+  content: "Your notes will appear here";
+}
+
+#your-notes p {
+  margin: 0 0 14px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px 12px 12px 4px;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  background: var(--paper);
+  box-shadow: 0 7px 18px rgba(69, 53, 38, 0.06);
+}
+
+#current-note {
+  display: flex;
+  flex: 1 1 42%;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px;
+  background: rgba(23, 33, 43, 0.95);
+}
+
+#current-note::before {
+  color: #f7c86c;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  content: "Write something worth keeping";
+}
+
+textarea {
+  width: 100%;
+  min-height: 275px;
+  resize: vertical;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  outline: none;
+  color: #fffdf8;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.1);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+textarea::placeholder {
+  color: rgba(255, 253, 248, 0.58);
+}
+
+textarea:focus {
+  border-color: #f7c86c;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+button {
+  align-self: flex-start;
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fffdf8;
+  font:
+    700 0.95rem "DM Sans",
+    sans-serif;
+  background: var(--accent);
+  box-shadow: 0 8px 18px rgba(232, 93, 63, 0.3);
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+@media (min-width: 760px) {
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 22px;
+  }
+
+  h1 {
+    flex-basis: 100%;
+  }
+
+  #your-notes,
+  #current-note {
+    max-width: none;
+  }
+
+  #your-notes {
+    flex: 1 1 calc(58% - 11px);
+  }
+
+  #current-note {
+    flex: 1 1 calc(42% - 11px);
+  }
+}
+
+@media (max-width: 759px) {
+  body {
+    padding: 34px 18px;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+  }
+
+  #your-notes,
+  #current-note {
+    min-height: 280px;
+  }
+
+  #your-notes {
+    padding: 20px;
+  }
+
+  #current-note {
+    min-height: 390px;
+    padding: 22px;
+  }
+}
