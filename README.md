@@ -1,0 +1,1 @@
+A simple Notes App that allows you to add and manage anything that's on your mind. The styling was created with the help of GitHub Copilot. I built this project to get hands-on experience with backend development and to understand how the frontend connects and communicates with the backend.
